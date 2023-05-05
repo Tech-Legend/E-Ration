@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  
+  <meta charset="UTF-8">
+  <title>E-Ration</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="/server.js"></script>
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <py-env>
+      - pandas
+      - numpy
+      - scikit-learn
+  </py-env>
+  <style>
+    .ration-card {
+        
+        border: 1px solid #ccc;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .ration-card h3,h4 {
+    color: green;
+    margin-bottom: 10px;
+    }
+    .title{
+        background-color: green;
+        
+    }
+    .title h3{
+        color: white;
+    }
+
+    .details h3{
+        text-align: left;
+    }
+
+    .card{
+        width: 24%;
+        border: 1px solid #ccc;
+    }
+
+    .number{
+        width: 24%;
+        border: 1px solid #ccc;
+    }
+   #credentials{
+    visibility: hidden;
+   }
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+<head>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  </head>
+
+<body>
+  <form action="register" method="get">
+<div id="form">
+  <div class="container">
+    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-md-8 col-md-offset-2">
+      <div id="userform">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+          <li class="active"><a href="#signup"  role="tab" data-toggle="tab">Sign up</a></li>
+          <li><a href="#login"  role="tab" data-toggle="tab">Log in</a></li>
+        </ul>
+        <div class="tab-content">
+          
+          <div class="tab-pane fade active in" id="signup">
+            <h2 class="text-uppercase text-center"> Sign Up for Card</h2>
+            <form id="signup" >
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <div class="form-group">
+                    
+                    <label style="font-size: larger;">First Name<span class="req">*</span> </label>
+                    <input type="text" class="form-control" id="first_name" required name="firstname" data-validation-required-message="Please enter your name." autocomplete="off">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                  <div class="form-group">
+                    <label style="font-size: larger;"> Last Name<span class="req">*</span> </label>
+                    <input type="text" class="form-control" id="last_name" required data-validation-required-message="Please enter your name." autocomplete="off">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Your Father / Partner name<span class="req">*</span> </label>
+                <input type="text" class="form-control" id="father" required data-validation-required-message="Please enter your Father/Partner Name" autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Your Username<span class="req">*</span> </label>
+                <input type="text" class="form-control" id="user" name="username" required data-validation-required-message="Please enter your Username" autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Your D.O.B<span class="req">*</span> </label>
+                <input type="date" class="form-control" id="date" required data-validation-required-message="Please enter your D.O.B" autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Your Address<span class="req">*</span> </label>
+                <input type="text" class="form-control" id="address" name="address" required data-validation-required-message="Please enter your address" autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Your Email<span class="req">*</span> </label>
+                <input type="email" class="form-control" id="email" name="email" required data-validation-required-message="Please enter your email address." autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Your Phone<span class="req">*</span> </label>
+                <input type="tel" class="form-control" id="phone" name="phone" required data-validation-required-message="Please enter your phone number." autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Your District<span class="req">*</span> </label>
+                <br>
+                <select id="District" style="margin-left: 67%; padding-bottom: 3%; border: 2px solid green;" required data-validation-required-message="Please choose your District" autocomplete="off"> 
+                  <option value="1">Ariyalur</option>
+                  <option value="2">Chennai_North</option>
+                  <option value="3">Chennai_South</option>
+                  <option value="4">Coimbatore</option>
+                  <option value="5">Kadalur</option>
+                  <option value="6">Dharmapuri</option>
+                  <option value="7">Dindigul</option>
+                  <option value="8">Erode</option>
+                  <option value="9">Kanchipuram</option>
+                  <option value="10">Kanyakumari</option>
+                  <option value="11">Karur</option>
+                  <option value="12">Krishnagiri</option>
+                  <option value="13">Madurai</option>
+                  <option value="14">Mayiladurai</option>
+                  <option value="15">Nagapattinam</option>
+                  <option value="16">Nammakal</option>
+                  <option value="17">Nilagiri</option>
+                  <option value="18">Perambalur</option>
+                  <option value="19">Puthukottai</option>
+                  <option value="20">Ramanathapuram</option>
+                  <option value="21">Ranipet</option>
+                  <option value="22">Salem</option>
+                  <option value="23">Sivagangai</option>
+                  <option value="24">Thenaksi</option>
+                  <option value="25">Thanjavur</option>
+                  <option value="26">Theni</option>
+                  <option value="27">Thiruvallur</option>
+                  <option value="28">Thiruvanamalai</option>
+                  <option value="29">Tirchy</option>
+                  <option value="30">Thirunalveli</option>
+                  <option value="31">Thirupathur</option>
+                  <option value="32">Tirupur</option>
+                  <option value="33">Thiruvarur</option>
+                  <option value="34">Thoothukudi</option>
+                  <option value="35">Vellore</option>
+                  <option value="36">Viruthunagar</option>                        
+                </select> 
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Are you working in police department<span class="req">*</span> </label>
+                <br>
+                <select id="emp" style="padding-bottom: 3%; border: 2px solid green;margin-left: 85%;" required data-validation-required-message="Please choose" autocomplete="off"> 
+                  <option value="1">Yes</option> 
+                  <option value="0">No</option> 
+                </select>
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Family Member Count<span class="req">*</span> </label>
+                <input type="number" class="form-control" id="no_of_members" name="membercount" required data-validation-required-message="Please enter your family member Count." autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Income Range<span class="req">*</span> </label>
+                <select id="income" style="margin-left: 76%; padding-bottom: 3%; border: 2px solid green;" required data-validation-required-message="Please choose your income Range." autocomplete="off"> 
+                  <option value="0">BPL</option> 
+                  <option value="1">1L - 4L</option>
+                  <option value="2">4L - 8L</option>
+                  <option value="3">8L - 12L</option>
+                  <option value="4">Above 12L</option> 
+                </select>
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Password<span class="req">*</span> </label>
+                <input type="password" class="form-control" id="password" name="pswd" required data-validation-required-message="Please enter your password" autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="mrgn-30-top">
+                <button onclick="generateNumber()" type="button" class="btn btn-larger btn-block" style="font-size: larger;">
+                Generate your Ration card number
+                </button>
+                
+              </div>
+              <div class="mrgn-30-top">
+                <button type="submit" class="btn btn-larger btn-block" style="font-size: larger;">
+                Sign up
+                </button>
+                
+              </div>
+            
+            
+            <br><br>
+            <center><button id="submit-button" type="button" pys-onClick="my_function" onclick="displaydetails()"><h2>Submit Form</h2></button></center>
+          </form>
+            <br><br>
+            <center>
+              <div class="ration-card" style="width: 100%; background: white;">
+              <div class="govt">
+                  <h3>
+                      Government of Tamil Nadu
+                      <br>
+                      <h4>Civil Supplies and Consumer Protection Department</h4> 
+                  </h3>
+              </div>
+              <br>
+              <div class="title">
+                  <h3>Family Card</h3>
+              </div>
+              <br>
+              <div class="details">
+                  <h3>Family Head Full Name <span id="name_display"></span></h3>
+                  <h3>Father / Partner Name <span id="father_display" style="margin-left: 3%;"></span></h3>
+                  <h3>Date Of Birth         <span id="dob_display" style="margin-left: 24%;"></span></h3>
+                  <h3>Address               <span id="add_display" style="margin-left: 35%;"></span></h3>
+              </div>
+              <br>
+              <div class="card" id="card">
+                <input type="text" style="color: green; font-weight: 700;" id="cards" name="cardname" placeholder="Your Card"  >
+              </div>
+              <br>
+              <div class="number" id="number">
+                <input type="text" style="color: green; font-weight: 700;" id="cardnum" name="cardnumber" placeholder="Card Number">
+              </div>
+          </div></center> <br> <br>
+          <a id="download" style="color: green; font-size: 25px;">Download your card</a>
+          <script type="text/javascript">
+            function autoClick(){
+              $("#download").click();
+            }
+      
+            $(document).ready(function(){
+              var element = $(".ration-card");
+      
+              $("#download").on('click', function(){
+      
+                html2canvas(element, {
+                  onrendered: function(canvas) {
+                    var imageData = canvas.toDataURL("image/jpg");
+                    var newData = imageData.replace(/^data:image\/jpg/, "data:application/octet-stream");
+                    $("#download").attr("download", "image.jpg").attr("href", newData);
+                  }
+                });
+      
+              });
+            });
+    
+          </script>
+          </div>
+          </form>
+          <div class="tab-pane fade in" id="login">
+            <h2 class="text-uppercase text-center"> Log in</h2>
+            <form id="login" action="login" method="get">
+              <div class="form-group">
+                <label style="font-size: larger;"> Your Card Number<span class="req">*</span> </label>
+                <input type="text" class="form-control" id="email" name="carddet" required data-validation-required-message="Please enter your email address." autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group">
+                <label style="font-size: larger;"> Password<span class="req">*</span> </label>
+                <input type="password" class="form-control" id="password" name="password" required data-validation-required-message="Please enter your password" autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="mrgn-30-top">
+                <button type="submit" class="btn btn-larger btn-block" style="font-size: larger;">
+                Log in
+                </button>
+              </div><br>
+              <div ><p id="credentials">Sorry Invalid credentials please try again </p></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+         
+  <!-- /.container --> 
+</div>
+</form>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+<!-- partial -->
+  <script  src="/script.js"></script>
+
+  <script>
+    function generateNumber() {
+      let number = '';
+      let characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      for (let i = 0; i < 10; i++) {
+        number += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      document.getElementById('cardnum').value = number;
+    }
+    function displaydetails()
+    {
+      document.getElementById('name_display').innerHTML=":"+document.getElementById('first_name').value;
+      document.getElementById('father_display').innerHTML=":"+document.getElementById('father').value;
+      document.getElementById('dob_display').innerHTML=":"+document.getElementById('date').value;
+      document.getElementById('add_display').innerHTML=document.getElementById('address').value;
+    document.getElementById('cards').readOnly=true;
+    document.getElementById('number').readOnly=true;
+
+    }
+  </script>
+  <br>
+  <br>
+  
+<br><br>
+
+
+
+<py-script>
+  import pandas as pd
+  import numpy as np
+  from sklearn.neighbors import KNeighborsClassifier
+  from pyodide.http import open_url
+  from csv import writer
+  file=open_url("data:text/txt;base64,77u/SUQsRGlzdHJpY3QsRW1wbG95bWVudCxOdW1iZXIgT2YgRmFtaWx5IE1lbWJlcnMsSW5jb21lLENhcmQgVHlwZQ0KMSxBcml5YWx1ciwwLDIsMSxTdWdhciBDYXJkDQoxLEFyaXlhbHVyLDAsMiwyLEFBWSBDYXJkDQoxLEFyaXlhbHVyLDAsMywwLFJpY2UgQ2FyZA0KMSxBcml5YWx1ciwwLDMsMSxSaWNlIENhcmQNCjEsQXJpeWFsdXIsMCwzLDIsQUFZIENhcmQNCjEsQXJpeWFsdXIsMCw0LDAsTm9uLUNvbW1vZGl0eSBDYXJkDQoxLEFyaXlhbHVyLDAsNSw0LFN1Z2FyIENhcmQNCjEsQXJpeWFsdXIsMSwzLDIsUG9saWNlIENhcmQNCjEsQXJpeWFsdXIsMSw0LDMsUG9saWNlIENhcmQNCjIsQ2hlbm5haSBOb3J0aCwwLDEsMyxSaWNlIENhcmQNCjIsQ2hlbm5haSBOb3J0aCwwLDIsMCxTdWdhciBDYXJkDQoyLENoZW5uYWkgTm9ydGgsMCwyLDMsU3VnYXIgQ2FyZA0KMixDaGVubmFpIE5vcnRoLDAsMiw0LFJpY2UgQ2FyZA0KMixDaGVubmFpIE5vcnRoLDAsNCw0LFJpY2UgQ2FyZA0KMixDaGVubmFpIE5vcnRoLDEsMiwzLFBvbGljZSBDYXJkDQoyLENoZW5uYWkgTm9ydGgsMSwzLDIsUG9saWNlIENhcmQNCjIsQ2hlbm5haSBOb3J0aCwxLDUsMSxQb2xpY2UgQ2FyZA0KMyxDaGVubmFpIFNvdXRoLDAsMiwyLEFBWSBDYXJkDQozLENoZW5uYWkgU291dGgsMCwzLDEsUmljZSBDYXJkDQozLENoZW5uYWkgU291dGgsMCwzLDIsQUFZIENhcmQNCjMsQ2hlbm5haSBTb3V0aCwwLDUsMyxSaWNlIENhcmQNCjMsQ2hlbm5haSBTb3V0aCwxLDMsMyxQb2xpY2UgQ2FyZA0KMyxDaGVubmFpIFNvdXRoLDEsMyw0LFBvbGljZSBDYXJkDQozLENoZW5uYWkgU291dGgsMSw1LDEsUG9saWNlIENhcmQNCjQsQ29pbWJhdG9yZSwwLDIsNCxSaWNlIENhcmQNCjQsQ29pbWJhdG9yZSwwLDMsMCxTdWdhciBDYXJkDQo0LENvaW1iYXRvcmUsMCwzLDIsQUFZIENhcmQNCjQsQ29pbWJhdG9yZSwwLDQsMSxTdWdhciBDYXJkDQo0LENvaW1iYXRvcmUsMCw0LDMsU3VnYXIgQ2FyZA0KNCxDb2ltYmF0b3JlLDAsNSwxLFN1Z2FyIENhcmQNCjQsQ29pbWJhdG9yZSwwLDUsMixSaWNlIENhcmQNCjQsQ29pbWJhdG9yZSwxLDMsNCxQb2xpY2UgQ2FyZA0KNSxDdWRkYWxvcmUsMCwyLDQsUmljZSBDYXJkDQo1LEN1ZGRhbG9yZSwwLDMsMyxSaWNlIENhcmQNCjUsQ3VkZGFsb3JlLDAsNCwxLFJpY2UgQ2FyZA0KNSxDdWRkYWxvcmUsMCw0LDIsQUFZIENhcmQNCjUsQ3VkZGFsb3JlLDAsNCwzLFJpY2UgQ2FyZA0KNSxDdWRkYWxvcmUsMCw1LDMsUmljZSBDYXJkDQo1LEN1ZGRhbG9yZSwxLDUsMCxQb2xpY2UgQ2FyZA0KNSxDdWRkYWxvcmUsMSw1LDIsUG9saWNlIENhcmQNCjYsRGhhcm1hcHVyaSwwLDIsMixBQVkgQ2FyZA0KNixEaGFybWFwdXJpLDAsMiwzLFN1Z2FyIENhcmQNCjYsRGhhcm1hcHVyaSwwLDIsNCxOb24tQ29tbW9kaXR5IENhcmQNCjYsRGhhcm1hcHVyaSwwLDMsMyxOb24tQ29tbW9kaXR5IENhcmQNCjYsRGhhcm1hcHVyaSwwLDQsMixBQVkgQ2FyZA0KNixEaGFybWFwdXJpLDAsNSwxLFN1Z2FyIENhcmQNCjYsRGhhcm1hcHVyaSwwLDUsMixOb24tQ29tbW9kaXR5IENhcmQNCjYsRGhhcm1hcHVyaSwxLDUsMSxQb2xpY2UgQ2FyZA0KNixEaGFybWFwdXJpLDEsNSwyLFBvbGljZSBDYXJkDQo3LERpbmRpZ3VsLDAsMywxLFN1Z2FyIENhcmQNCjcsRGluZGlndWwsMCwzLDIsUmljZSBDYXJkDQo3LERpbmRpZ3VsLDAsMywzLE5vbi1Db21tb2RpdHkgQ2FyZA0KNyxEaW5kaWd1bCwwLDQsMSxOb24tQ29tbW9kaXR5IENhcmQNCjcsRGluZGlndWwsMCw0LDQsTm9uLUNvbW1vZGl0eSBDYXJkDQo3LERpbmRpZ3VsLDEsMiw0LFBvbGljZSBDYXJkDQo3LERpbmRpZ3VsLDEsMywzLFBvbGljZSBDYXJkDQo3LERpbmRpZ3VsLDEsNCwyLFBvbGljZSBDYXJkDQo4LEVyb2RlLDAsMiwzLFJpY2UgQ2FyZA0KOCxFcm9kZSwwLDMsMixBQVkgQ2FyZA0KOCxFcm9kZSwwLDMsMyxTdWdhciBDYXJkDQo4LEVyb2RlLDAsMyw0LFN1Z2FyIENhcmQNCjgsRXJvZGUsMCw0LDAsUmljZSBDYXJkDQo4LEVyb2RlLDAsNSwyLEFBWSBDYXJkDQo4LEVyb2RlLDEsNCwwLFBvbGljZSBDYXJkDQo4LEVyb2RlLDEsNCwyLFBvbGljZSBDYXJkDQo4LEVyb2RlLDEsNCwzLFBvbGljZSBDYXJkDQo5LEthbmNoaXB1cmFtLDAsMiwwLFJpY2UgQ2FyZA0KOSxLYW5jaGlwdXJhbSwwLDIsMixBQVkgQ2FyZA0KOSxLYW5jaGlwdXJhbSwwLDMsMyxTdWdhciBDYXJkDQo5LEthbmNoaXB1cmFtLDAsMyw0LFJpY2UgQ2FyZA0KOSxLYW5jaGlwdXJhbSwwLDQsNCxTdWdhciBDYXJkDQo5LEthbmNoaXB1cmFtLDAsNSwyLEFBWSBDYXJkDQo5LEthbmNoaXB1cmFtLDAsNSwzLFJpY2UgQ2FyZA0KOSxLYW5jaGlwdXJhbSwxLDQsMyxQb2xpY2UgQ2FyZA0KOSxLYW5jaGlwdXJhbSwxLDQsNCxQb2xpY2UgQ2FyZA0KMTAsS2FueWFrdW1hcmksMCwyLDIsQUFZIENhcmQNCjEwLEthbnlha3VtYXJpLDAsNCwwLFJpY2UgQ2FyZA0KMTAsS2FueWFrdW1hcmksMCw1LDAsU3VnYXIgQ2FyZA0KMTAsS2FueWFrdW1hcmksMCw1LDEsU3VnYXIgQ2FyZA0KMTAsS2FueWFrdW1hcmksMCw1LDMsU3VnYXIgQ2FyZA0KMTAsS2FueWFrdW1hcmksMSwzLDIsUG9saWNlIENhcmQNCjEwLEthbnlha3VtYXJpLDEsMywzLFBvbGljZSBDYXJkDQoxMCxLYW55YWt1bWFyaSwxLDMsNCxQb2xpY2UgQ2FyZA0KMTAsS2FueWFrdW1hcmksMSw0LDMsUG9saWNlIENhcmQNCjExLEthcnVyLDAsMiwzLFN1Z2FyIENhcmQNCjExLEthcnVyLDAsMywxLFN1Z2FyIENhcmQNCjExLEthcnVyLDAsMywzLFJpY2UgQ2FyZA0KMTEsS2FydXIsMCw0LDIsUmljZSBDYXJkDQoxMSxLYXJ1ciwwLDQsMyxOb24tQ29tbW9kaXR5IENhcmQNCjExLEthcnVyLDAsNCw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMTEsS2FydXIsMSwyLDIsUG9saWNlIENhcmQNCjExLEthcnVyLDEsMyw0LFBvbGljZSBDYXJkDQoxMixLcmlzaG5hZ2lyaSwwLDIsMixBQVkgQ2FyZA0KMTIsS3Jpc2huYWdpcmksMCwzLDEsU3VnYXIgQ2FyZA0KMTIsS3Jpc2huYWdpcmksMCw0LDIsQUFZIENhcmQNCjEyLEtyaXNobmFnaXJpLDAsNCwzLFJpY2UgQ2FyZA0KMTIsS3Jpc2huYWdpcmksMCw1LDIsQUFZIENhcmQNCjEyLEtyaXNobmFnaXJpLDEsMiwzLFBvbGljZSBDYXJkDQoxMixLcmlzaG5hZ2lyaSwxLDMsMixQb2xpY2UgQ2FyZA0KMTIsS3Jpc2huYWdpcmksMSw0LDMsUG9saWNlIENhcmQNCjEzLE1hZHVyYWksMCwyLDIsQUFZIENhcmQNCjEzLE1hZHVyYWksMCwzLDEsUmljZSBDYXJkDQoxMyxNYWR1cmFpLDAsMywyLEFBWSBDYXJkDQoxMyxNYWR1cmFpLDAsMyw0LFN1Z2FyIENhcmQNCjEzLE1hZHVyYWksMCw0LDMsU3VnYXIgQ2FyZA0KMTMsTWFkdXJhaSwwLDUsMCxOb24tQ29tbW9kaXR5IENhcmQNCjEzLE1hZHVyYWksMCw1LDIsQUFZIENhcmQNCjEzLE1hZHVyYWksMSwzLDMsUG9saWNlIENhcmQNCjEzLE1hZHVyYWksMSw0LDEsUG9saWNlIENhcmQNCjE0LE1heWlsYWR1dGh1cmFpLDAsMywyLEFBWSBDYXJkDQoxNCxNYXlpbGFkdXRodXJhaSwwLDUsMCxTdWdhciBDYXJkDQoxNCxNYXlpbGFkdXRodXJhaSwwLDUsMixBQVkgQ2FyZA0KMTQsTWF5aWxhZHV0aHVyYWksMCw1LDMsUmljZSBDYXJkDQoxNCxNYXlpbGFkdXRodXJhaSwxLDIsMSxQb2xpY2UgQ2FyZA0KMTQsTWF5aWxhZHV0aHVyYWksMSw0LDMsUG9saWNlIENhcmQNCjE0LE1heWlsYWR1dGh1cmFpLDEsNSwxLFBvbGljZSBDYXJkDQoxNSxOYWdhcGF0dGluYW0sMCwyLDIsQUFZIENhcmQNCjE1LE5hZ2FwYXR0aW5hbSwwLDIsMyxOb24tQ29tbW9kaXR5IENhcmQNCjE1LE5hZ2FwYXR0aW5hbSwwLDMsMixBQVkgQ2FyZA0KMTUsTmFnYXBhdHRpbmFtLDAsNCwxLE5vbi1Db21tb2RpdHkgQ2FyZA0KMTUsTmFnYXBhdHRpbmFtLDAsNSwyLEFBWSBDYXJkDQoxNSxOYWdhcGF0dGluYW0sMSwyLDMsUG9saWNlIENhcmQNCjE1LE5hZ2FwYXR0aW5hbSwxLDIsNCxQb2xpY2UgQ2FyZA0KMTUsTmFnYXBhdHRpbmFtLDEsNCwwLFBvbGljZSBDYXJkDQoxNixOYW1tYWthbCwwLDIsMSxSaWNlIENhcmQNCjE2LE5hbW1ha2FsLDAsMiwzLFJpY2UgQ2FyZA0KMTYsTmFtbWFrYWwsMCwyLDQsU3VnYXIgQ2FyZA0KMTYsTmFtbWFrYWwsMCwzLDEsU3VnYXIgQ2FyZA0KMTYsTmFtbWFrYWwsMCwzLDIsQUFZIENhcmQNCjE2LE5hbW1ha2FsLDAsMyw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMTYsTmFtbWFrYWwsMCw0LDIsQUFZIENhcmQNCjE2LE5hbW1ha2FsLDAsNCw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMTYsTmFtbWFrYWwsMCw1LDEsTm9uLUNvbW1vZGl0eSBDYXJkDQoxNixOYW1tYWthbCwwLDUsMixBQVkgQ2FyZA0KMTYsTmFtbWFrYWwsMSwyLDIsUG9saWNlIENhcmQNCjE2LE5hbW1ha2FsLDEsMywwLFBvbGljZSBDYXJkDQoxNixOYW1tYWthbCwxLDMsMyxQb2xpY2UgQ2FyZA0KMTcsTmlsZ3JpcywwLDIsMCxTdWdhciBDYXJkDQoxNyxOaWxncmlzLDAsMywwLFN1Z2FyIENhcmQNCjE3LE5pbGdyaXMsMCwzLDMsQUFZIENhcmQNCjE3LE5pbGdyaXMsMCwzLDQsTm9uLUNvbW1vZGl0eSBDYXJkDQoxNyxOaWxncmlzLDAsNCwxLFJpY2UgQ2FyZA0KMTcsTmlsZ3JpcywwLDQsMyxOb24tQ29tbW9kaXR5IENhcmQNCjE3LE5pbGdyaXMsMCw1LDIsQUFZIENhcmQNCjE3LE5pbGdyaXMsMSwyLDAsUG9saWNlIENhcmQNCjE4LFBlcmFtYmFsdXIsMCwxLDAsTm9uLUNvbW1vZGl0eSBDYXJkDQoxOCxQZXJhbWJhbHVyLDAsMiwxLE5vbi1Db21tb2RpdHkgQ2FyZA0KMTgsUGVyYW1iYWx1ciwwLDIsMyxTdWdhciBDYXJkDQoxOCxQZXJhbWJhbHVyLDAsMiw0LFJpY2UgQ2FyZA0KMTgsUGVyYW1iYWx1ciwwLDQsMCxSaWNlIENhcmQNCjE4LFBlcmFtYmFsdXIsMCw0LDIsQUFZIENhcmQNCjE4LFBlcmFtYmFsdXIsMCw1LDIsQUFZIENhcmQNCjE4LFBlcmFtYmFsdXIsMSwzLDIsUG9saWNlIENhcmQNCjE4LFBlcmFtYmFsdXIsMSw0LDQsUG9saWNlIENhcmQNCjE5LFB1ZHVrb3R0YWksMCwyLDEsTm9uLUNvbW1vZGl0eSBDYXJkDQoxOSxQdWR1a290dGFpLDAsMiw0LFN1Z2FyIENhcmQNCjE5LFB1ZHVrb3R0YWksMCwzLDAsU3VnYXIgQ2FyZA0KMTksUHVkdWtvdHRhaSwwLDUsMSxSaWNlIENhcmQNCjE5LFB1ZHVrb3R0YWksMCw1LDIsQUFZIENhcmQNCjE5LFB1ZHVrb3R0YWksMCw1LDMsU3VnYXIgQ2FyZA0KMTksUHVkdWtvdHRhaSwwLDUsNCxTdWdhciBDYXJkDQoxOSxQdWR1a290dGFpLDEsNCwwLFBvbGljZSBDYXJkDQoxOSxQdWR1a290dGFpLDEsNSwyLFBvbGljZSBDYXJkDQoyMCxSYW1hbmF0aGFwdXJhbSwwLDIsMSxTdWdhciBDYXJkDQoyMCxSYW1hbmF0aGFwdXJhbSwwLDIsMixBQVkgQ2FyZA0KMjAsUmFtYW5hdGhhcHVyYW0sMCwzLDIsQUFZIENhcmQNCjIwLFJhbWFuYXRoYXB1cmFtLDAsMywzLFJpY2UgQ2FyZA0KMjAsUmFtYW5hdGhhcHVyYW0sMCw0LDIsQUFZIENhcmQNCjIwLFJhbWFuYXRoYXB1cmFtLDAsNCwzLFN1Z2FyIENhcmQNCjIwLFJhbWFuYXRoYXB1cmFtLDEsMiwyLFBvbGljZSBDYXJkDQoyMCxSYW1hbmF0aGFwdXJhbSwxLDMsMSxQb2xpY2UgQ2FyZA0KMjAsUmFtYW5hdGhhcHVyYW0sMSwzLDMsUG9saWNlIENhcmQNCjIxLFJhbmlwcGV0LDAsMywxLFJpY2UgQ2FyZA0KMjEsUmFuaXBwZXQsMCwzLDIsQUFZIENhcmQNCjIxLFJhbmlwcGV0LDAsMywzLFN1Z2FyIENhcmQNCjIxLFJhbmlwcGV0LDAsMyw0LFJpY2UgQ2FyZA0KMjEsUmFuaXBwZXQsMCw0LDAsU3VnYXIgQ2FyZA0KMjEsUmFuaXBwZXQsMCw0LDIsQUFZIENhcmQNCjIxLFJhbmlwcGV0LDAsNCwzLFN1Z2FyIENhcmQNCjIxLFJhbmlwcGV0LDEsMiwzLFBvbGljZSBDYXJkDQoyMSxSYW5pcHBldCwxLDQsMixQb2xpY2UgQ2FyZA0KMjEsUmFuaXBwZXQsMSw0LDQsUG9saWNlIENhcmQNCjIyLFNhbGVtLDAsMiwwLFJpY2UgQ2FyZA0KMjIsU2FsZW0sMCwyLDMsUmljZSBDYXJkDQoyMixTYWxlbSwwLDMsMSxSaWNlIENhcmQNCjIyLFNhbGVtLDAsNCwzLE5vbi1Db21tb2RpdHkgQ2FyZA0KMjIsU2FsZW0sMCw0LDQsUmljZSBDYXJkDQoyMixTYWxlbSwwLDUsMixBQVkgQ2FyZA0KMjIsU2FsZW0sMCw1LDQsTm9uLUNvbW1vZGl0eSBDYXJkDQoyMixTYWxlbSwxLDMsMSxQb2xpY2UgQ2FyZA0KMjIsU2FsZW0sMSw0LDIsUG9saWNlIENhcmQNCjIyLFNhbGVtLDEsNSwyLFBvbGljZSBDYXJkDQoyMixTYWxlbSwxLDUsMyxQb2xpY2UgQ2FyZA0KMjMsU2l2YWdhbmdhLDAsMywwLFN1Z2FyIENhcmQNCjIzLFNpdmFnYW5nYSwwLDMsMixBQVkgQ2FyZA0KMjMsU2l2YWdhbmdhLDAsNCwzLFN1Z2FyIENhcmQNCjIzLFNpdmFnYW5nYSwwLDQsNCxTdWdhciBDYXJkDQoyMyxTaXZhZ2FuZ2EsMCw1LDQsUmljZSBDYXJkDQoyMyxTaXZhZ2FuZ2EsMSwyLDEsUG9saWNlIENhcmQNCjIzLFNpdmFnYW5nYSwxLDMsMixQb2xpY2UgQ2FyZA0KMjMsU2l2YWdhbmdhLDEsNCwyLFBvbGljZSBDYXJkDQoyNCxUZW5rYXNpLDAsMiw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMjQsVGVua2FzaSwwLDMsMCxSaWNlIENhcmQNCjI0LFRlbmthc2ksMCwzLDEsUmljZSBDYXJkDQoyNCxUZW5rYXNpLDAsNCwyLEFBWSBDYXJkDQoyNCxUZW5rYXNpLDAsNCwzLFN1Z2FyIENhcmQNCjI0LFRlbmthc2ksMCw1LDMsU3VnYXIgQ2FyZA0KMjQsVGVua2FzaSwxLDMsMixQb2xpY2UgQ2FyZA0KMjQsVGVua2FzaSwxLDMsMyxQb2xpY2UgQ2FyZA0KMjQsVGVua2FzaSwxLDQsMixQb2xpY2UgQ2FyZA0KMjUsVGhhbmphdnVyLDAsMiwxLFN1Z2FyIENhcmQNCjI1LFRoYW5qYXZ1ciwwLDIsMixBQVkgQ2FyZA0KMjUsVGhhbmphdnVyLDAsMywyLEFBWSBDYXJkDQoyNSxUaGFuamF2dXIsMCw0LDIsQUFZIENhcmQNCjI1LFRoYW5qYXZ1ciwxLDIsMixQb2xpY2UgQ2FyZA0KMjUsVGhhbmphdnVyLDEsMywyLFBvbGljZSBDYXJkDQoyNSxUaGFuamF2dXIsMSwzLDMsUG9saWNlIENhcmQNCjI1LFRoYW5qYXZ1ciwxLDQsMyxQb2xpY2UgQ2FyZA0KMjYsVGhlbmksMCwyLDIsQUFZIENhcmQNCjI2LFRoZW5pLDAsMywwLFJpY2UgQ2FyZA0KMjYsVGhlbmksMCw0LDIsQUFZIENhcmQNCjI2LFRoZW5pLDAsNCwzLFN1Z2FyIENhcmQNCjI2LFRoZW5pLDAsNCw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMjYsVGhlbmksMCw1LDAsUmljZSBDYXJkDQoyNixUaGVuaSwxLDMsMSxQb2xpY2UgQ2FyZA0KMjYsVGhlbmksMSwzLDIsUG9saWNlIENhcmQNCjI2LFRoZW5pLDEsMywzLFBvbGljZSBDYXJkDQoyNyxUaGlydXZhbGx1ciwwLDIsMCxTdWdhciBDYXJkDQoyNyxUaGlydXZhbGx1ciwwLDIsMyxOb24tQ29tbW9kaXR5IENhcmQNCjI3LFRoaXJ1dmFsbHVyLDAsMywyLEFBWSBDYXJkDQoyNyxUaGlydXZhbGx1ciwwLDMsMyxSaWNlIENhcmQNCjI3LFRoaXJ1dmFsbHVyLDAsMyw0LFN1Z2FyIENhcmQNCjI3LFRoaXJ1dmFsbHVyLDEsMywyLFBvbGljZSBDYXJkDQoyNyxUaGlydXZhbGx1ciwxLDQsMCxQb2xpY2UgQ2FyZA0KMjcsVGhpcnV2YWxsdXIsMSw0LDIsUG9saWNlIENhcmQNCjI3LFRoaXJ1dmFsbHVyLDEsNCwzLFBvbGljZSBDYXJkDQoyNyxUaGlydXZhbGx1ciwxLDUsMixQb2xpY2UgQ2FyZA0KMjgsVGhpcnV2YW5uYW1hbGFpLDAsMiwyLEFBWSBDYXJkDQoyOCxUaGlydXZhbm5hbWFsYWksMCwyLDMsU3VnYXIgQ2FyZA0KMjgsVGhpcnV2YW5uYW1hbGFpLDAsMiw0LFJpY2UgQ2FyZA0KMjgsVGhpcnV2YW5uYW1hbGFpLDAsMywyLEFBWSBDYXJkDQoyOCxUaGlydXZhbm5hbWFsYWksMCwzLDMsU3VnYXIgQ2FyZA0KMjgsVGhpcnV2YW5uYW1hbGFpLDAsNCw0LFJpY2UgQ2FyZA0KMjgsVGhpcnV2YW5uYW1hbGFpLDEsMywyLFBvbGljZSBDYXJkDQoyOCxUaGlydXZhbm5hbWFsYWksMSw1LDMsUG9saWNlIENhcmQNCjI5LFRpcnVjaGlyYXBwYWxsaSwwLDIsMixBQVkgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDAsMiw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDAsMywxLFJpY2UgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDAsMywzLFJpY2UgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDAsMyw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDAsNSw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDEsMiwyLFBvbGljZSBDYXJkDQoyOSxUaXJ1Y2hpcmFwcGFsbGksMSwzLDMsUG9saWNlIENhcmQNCjI5LFRpcnVjaGlyYXBwYWxsaSwxLDUsMixQb2xpY2UgQ2FyZA0KMzAsVGlydW5lbHZlbGksMCwzLDMsU3VnYXIgQ2FyZA0KMzAsVGlydW5lbHZlbGksMCw1LDIsQUFZIENhcmQNCjMwLFRpcnVuZWx2ZWxpLDAsNSw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMzAsVGlydW5lbHZlbGksMSwyLDMsUG9saWNlIENhcmQNCjMwLFRpcnVuZWx2ZWxpLDEsMywwLFBvbGljZSBDYXJkDQozMCxUaXJ1bmVsdmVsaSwxLDMsMSxQb2xpY2UgQ2FyZA0KMzAsVGlydW5lbHZlbGksMSwzLDIsUG9saWNlIENhcmQNCjMwLFRpcnVuZWx2ZWxpLDEsNCwzLFBvbGljZSBDYXJkDQozMCxUaXJ1bmVsdmVsaSwxLDQsNCxQb2xpY2UgQ2FyZA0KMzEsVGlydXBhdHR1ciwwLDIsMixBQVkgQ2FyZA0KMzEsVGlydXBhdHR1ciwwLDMsMSxSaWNlIENhcmQNCjMxLFRpcnVwYXR0dXIsMCwzLDMsUmljZSBDYXJkDQozMSxUaXJ1cGF0dHVyLDAsNCwwLFN1Z2FyIENhcmQNCjMxLFRpcnVwYXR0dXIsMCw1LDIsQUFZIENhcmQNCjMxLFRpcnVwYXR0dXIsMCw1LDMsU3VnYXIgQ2FyZA0KMzEsVGlydXBhdHR1ciwxLDIsMSxQb2xpY2UgQ2FyZA0KMzEsVGlydXBhdHR1ciwxLDQsNCxQb2xpY2UgQ2FyZA0KMzIsVGlydXB1ciwwLDIsMyxTdWdhciBDYXJkDQozMixUaXJ1cHVyLDAsMiw0LFJpY2UgQ2FyZA0KMzIsVGlydXB1ciwwLDMsMCxSaWNlIENhcmQNCjMyLFRpcnVwdXIsMCwzLDEsUmljZSBDYXJkDQozMixUaXJ1cHVyLDAsMyw0LFJpY2UgQ2FyZA0KMzIsVGlydXB1ciwwLDQsMixBQVkgQ2FyZA0KMzIsVGlydXB1ciwwLDUsMCxTdWdhciBDYXJkDQozMixUaXJ1cHVyLDAsNSwyLEFBWSBDYXJkDQozMixUaXJ1cHVyLDAsNSwzLFN1Z2FyIENhcmQNCjMyLFRpcnVwdXIsMSwzLDEsUG9saWNlIENhcmQNCjMyLFRpcnVwdXIsMSw1LDIsUG9saWNlIENhcmQNCjMzLFRpcnV2YXJ1ciwwLDIsMCxTdWdhciBDYXJkDQozMyxUaXJ1dmFydXIsMCwyLDEsU3VnYXIgQ2FyZA0KMzMsVGlydXZhcnVyLDAsMywyLEFBWSBDYXJkDQozMyxUaXJ1dmFydXIsMCwzLDMsU3VnYXIgQ2FyZA0KMzMsVGlydXZhcnVyLDAsNCwyLEFBWSBDYXJkDQozMyxUaXJ1dmFydXIsMSwzLDMsUG9saWNlIENhcmQNCjMzLFRpcnV2YXJ1ciwxLDUsNCxQb2xpY2UgQ2FyZA0KMzQsVHV0aWNvcmluLDAsMiwyLEFBWSBDYXJkDQozNCxUdXRpY29yaW4sMCwzLDIsQUFZIENhcmQNCjM0LFR1dGljb3JpbiwwLDQsMixBQVkgQ2FyZA0KMzQsVHV0aWNvcmluLDAsNCwzLFN1Z2FyIENhcmQNCjM0LFR1dGljb3JpbiwxLDQsMCxQb2xpY2UgQ2FyZA0KMzQsVHV0aWNvcmluLDEsNCwzLFBvbGljZSBDYXJkDQozNCxUdXRpY29yaW4sMSw0LDQsUG9saWNlIENhcmQNCjM1LFZlbGxvcmUsMCwyLDEsUmljZSBDYXJkDQozNSxWZWxsb3JlLDAsMiwzLFJpY2UgQ2FyZA0KMzUsVmVsbG9yZSwwLDQsNCxOb24tQ29tbW9kaXR5IENhcmQNCjM1LFZlbGxvcmUsMSwyLDIsUG9saWNlIENhcmQNCjM1LFZlbGxvcmUsMSwzLDMsUG9saWNlIENhcmQNCjM1LFZlbGxvcmUsMSw1LDEsUG9saWNlIENhcmQNCjM1LFZlbGxvcmUsMSw1LDMsUG9saWNlIENhcmQNCjM2LFZpcnVkaHVuYWdhciwwLDIsMyxTdWdhciBDYXJkDQozNixWaXJ1ZGh1bmFnYXIsMCwzLDIsQUFZIENhcmQNCjM2LFZpcnVkaHVuYWdhciwwLDQsMyxTdWdhciBDYXJkDQozNixWaXJ1ZGh1bmFnYXIsMCw0LDQsTm9uLUNvbW1vZGl0eSBDYXJkDQozNixWaXJ1ZGh1bmFnYXIsMSwzLDAsUG9saWNlIENhcmQNCjM2LFZpcnVkaHVuYWdhciwxLDMsMSxQb2xpY2UgQ2FyZA0K")
+  df=pd.read_csv(file)
+  <!-- print(df) -->
+
+
+  def my_function(*args, **kwargs):
+      District =Element('District').element.value 
+      employement =Element('emp').element.value 
+      members = Element('no_of_members').element.value
+      income = Element('income').element.value
+      
+      <!-- Element('test-output').element.innerText = District+ " " + " " + employement + " " +members +" "+ income; -->
+      my_array(District,employement,members,income)
+      
+
+
+  def my_array(a,b,c,d):
+      data=np.array([[int(a),int(b),int(c),int(d)]])
+      
+      prediction(data)
+
+
+  def prediction(data):
+      <!-- Element('data-output').element.innerText = data[0][1] -->
+      
+      df.set_index("District", inplace = True)
+      Y = df[df['Employment']==data[0][1]]['Card Type'].values
+      X = df[df['Employment']==data[0][1]].drop('Card Type', axis=1).values
+      knn = KNeighborsClassifier(n_neighbors=4)
+      knn.fit(X, Y)
+      Y_pred = knn.predict(X)
+      new_prediction = knn.predict(data) 
+      <!-- Element('test-output').element.innerText = "You have been Alloted "+ new_prediction[0] -->
+      Element('cards').element.value = new_prediction[0]
+      new=data.tolist()
+      
+      new[0].append(new_prediction[0])
+      
+      name=list(set(list(df[df['ID']==new[0][0]].index)))
+      new[0].insert(1,name[0])
+      
+      <!-- Element('data-output').element.innerText = new[0] -->
+      with open("C:/Projects/Ration/Python/Final.csv", 'a') as f_object:
+
+          writer_object = csv.writer(f_object)
+      
+          writer_object.write(new[0])
+      
+          f_object.close()
+      
+      
+  <!-- print("bekdbckjbrkjbfw") 
+  from sklearn.neighbors import KNeighborsClassifier 
+  import pandas as pd
+  import numpy as np
+  from pyodide.http import open_url
+  d=open_url("https://raw.githubusercontent.com/Subramanian30/ration/main/Final.csv?token=GHSAT0AAAAAAB6B2ANJH7TCHXSGTICHYFBWZAGXJMA")
+  df=pd.read_csv(d)
+  df.set_index("District", inplace = True)
+  Y = df['Card Type'].values
+  X = df.drop('Card Type', axis=1).values
+  from sklearn.model_selection import train_test_split
+  from sklearn.preprocessing import StandardScaler
+  df_model = df.copy()
+  scaler = StandardScaler()
+  knn_score=.30
+  features= [['ID','Employment','Number Of Family Members','Income']]
+  for feature in features:
+      df_model[feature] = scaler.fit_transform(df_model[feature])
+  knn = KNeighborsClassifier(n_neighbors=4)
+  knn.fit(X, Y)
+  Y_pred = knn.predict(X)
+  X_new=np.array([[2,1,4,3],[5,0,2,1],[19,0,3,4]])
+  from warnings import filterwarnings
+  warnings.filterwarnings('ignore')
+  new_prediction = knn.predict(X_new)
+  print("Prediction: {}".format(new_prediction))  -->
+  <!--print(df.head())
+  print("gbg") -->
+  </py-script>
+  
+</body>
+</html>

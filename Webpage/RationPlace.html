@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/130a40cffb.js" crossorigin="anonymous"></script>
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        .containerO{
+            display: flex;
+            gap: 34px;
+justify-content: right;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <i class="ri-leaf-line nav__logo-icon"></i> E-Ration
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/Loginwarning.html" class="nav__link">Store</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/login.html" class="nav__link">Login</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Contact Us</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link"><i class="fa-regular fa-bell"></i></a>
+                    </li> 
+                   
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link"><i class="fa-solid fa-user"></i> {%contactname%}</a>
+                    </li>
+                </ul>
+                    
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+                
+            </div>
+
+            <div class="nav__btns">
+                <!-- Theme change button -->
+                <i class="ri-moon-line change-theme" id="theme-button"></i>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <br> <br>
+    <h1 style="color:green;font-weight: bold;font-size: 60px; padding: 23px;">{%areaname%}</h1>
+
+    <h2 style="padding: 35px;font-size: 30px;color: green;">Store Details</h2>
+    <br><br>
+    <table border="1" align="center" cellpadding="4" style="font-size: 30px; width: 99%;">
+        <tr>
+            <td>Total Rice</td>
+            <td align="right"><p>{%totalrice%} kg</p></td>
+            </tr>
+            <tr><td>P.U.Rice</td>
+                <td align="right">{%purice%} kg</td></tr>
+            <tr><td>P.A.Rice</td>
+
+                <td align="right">{%parice%} kg</td></tr>
+            
+<tr><td>Sugar</td>
+    <td align="right">{%sugar%} kg</td></tr>
+<tr><td>Wheat</td>
+    <td align="right">{%wheat%} kg</td></tr>
+<tr><td>Oil</td>
+    <td align="right">{%oil%} Ltr</td></tr>
+        
+    </table>
+    <br> <br>
+    <div class="containerO">
+        <div><form action="/home.html">
+            <button style=" color: white;
+            background-color: green;
+            width: 160px;
+            height: 55px;
+           
+            padding: 12px;
+            font-size: 17px;
+            cursor: pointer; 
+            border: none;">Back to Location</button>
+        </form></div>
+        <div><form action="quantitystore">
+            <button type="submit" style=" color: white;
+            background-color: green;
+            width: 160px;
+            height: 55px;
+           
+            padding: 12px;
+            font-size: 17px;
+            cursor: pointer; 
+            border: none;">Proceed</button>
+        </form></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+Feature Variables
+
+Income
+
+Employment
+
+Number Of Family Members
+
+District
+
+Area
+
+Gas Connection
+
+
+Target Variable
+
+Card --> Rice Card - 1
+         Sugar Card - 2
+         AAY Card - 3
+         Police Card - 4
+         Non-Commodity Card-0
+         
+

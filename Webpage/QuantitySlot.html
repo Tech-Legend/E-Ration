@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/130a40cffb.js" crossorigin="anonymous"></script>
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        th{
+        text-align:left;
+        
+    
+    }
+    
+    
+    .quan{
+        padding-left: 20%;
+    }
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: -6%;
+        margin-left: 80%;
+      }
+    
+      .frame {
+        text-align: center;
+        border-style: solid;
+        border-color: #4CAF50;
+        margin-left: 300px;
+        width:60%;
+        margin-top: 10%;
+        
+    }
+    #alignment{
+        margin-left: auto;
+        margin-right: auto;
+    
+    }
+    tr{
+        text-align: center;
+    }
+    th{
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <i class="ri-leaf-line nav__logo-icon"></i> E-Ration
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#steps" class="nav__link">Steps</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="login.html" class="nav__link">Login</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Contact Us</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link"><i class="fa-regular fa-bell"></i></a>
+                    </li> 
+                   
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link"><i class="fa-solid fa-user"></i> {%contactname%}</a>
+                    </li>
+                </ul>
+
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+
+            <div class="nav__btns">
+                <!-- Theme change button -->
+                <i class="ri-moon-line change-theme" id="theme-button"></i>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </nav>
+    </header> 
+   
+    <div class="frame"> 
+    <center><h2>Quantity list</h2></center>
+    <br>
+    
+        <br>
+        <h>RATION SHOP - Order Form</h1>
+            <table style="background-color:aquamarine;margin-left: 100px;">  <tr>
+            <br>
+            <br>
+            <form action="confirm" method="get" >
+                <table width="40%" id="alignment"  > 
+                    <tr>  
+                    <th >Food Item</th> 
+                    <th></th>
+                    <th>QUANTITY</th>
+                    </tr> 
+                    <tr>
+                    <td>PU RICE and PA RICE </td> 
+                    <td> - </td>
+                    <td>{%riceamount%}</td> 
+                    </tr> 
+                    <tr> 
+                    <td>WHEAT</td>
+                    <td> - </td>  
+                    <td>{%wheatamount%}</td>
+                    </tr> 
+                    <tr>  
+                    <td>SUGAR </td>
+                    <td> - </td> 
+                    <td>{%sugaramount%}</td> 
+                    </tr>  
+                    <tr>
+                    <td>OIL</td>
+                    <td> - </td> 
+                    <td>{%oilamount%}</td>
+                    </tr>
+                    </table>
+                <table width="80%"  id="alignment" >
+                <tr>
+                <th>Food Item</th>
+                
+                <th class="quan">Quantity</th>
+                </tr>
+
+                <tr> 
+                <td>PURice</td> 
+                
+                <td class="quan"><input type="text" id="p1" name="purice"></td>
+                </tr>  
+
+                <tr>
+                <td>PARice</td>
+                
+                <td class="quan"><input type="text"  id="p2" name="parice"></td>  
+                </tr> 
+
+                <tr>
+                <td>Wheat</td>
+                
+                <td class="quan"><input type="text"  id="p3" name="wheat"></td> 
+                </tr> 
+
+                <tr>
+                <td>Sugar</td>
+                
+                <td class="quan"><input type="text"  id="p4" name="sugar"></td> 
+                </tr>    
+
+                
+                <tr>
+                    <td>Oil</td>
+                    
+                    <td class="quan"><input type="text"  id="p4" name="oil"></td> 
+                    </tr>
+
+                </table>
+                
+                <input type="submit" class="button" value="Proceed">
+                </form>
+                
+                <br>
+</body>
+</html>

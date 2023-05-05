@@ -1,0 +1,164 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+        <py-env>
+            - pandas
+            - numpy
+            - scikit-learn
+        </py-env>
+    </head>
+    <body>
+        <h2>Choose Your District</h2>
+        <select id="District"> 
+            <option value="1">Ariyalur</option>
+            <option value="2">Chennai_North</option>
+            <option value="3">Chennai_South</option>
+            <option value="4">Coimbatore</option>
+            <option value="5">Kadalur</option>
+            <option value="6">Dharmapuri</option>
+            <option value="7">Dindigul</option>
+            <option value="8">Erode</option>
+            <option value="9">Kanchipuram</option>
+            <option value="10">Kanyakumari</option>
+            <option value="11">Karur</option>
+            <option value="12">Krishnagiri</option>
+            <option value="13">Madurai</option>
+            <option value="14">Mayiladurai</option>
+            <option value="15">Nagapattinam</option>
+            <option value="16">Nammakal</option>
+            <option value="17">Nilagiri</option>
+            <option value="18">Perambalur</option>
+            <option value="19">Puthukottai</option>
+            <option value="20">Ramanathapuram</option>
+            <option value="21">Ranipet</option>
+            <option value="22">Salem</option>
+            <option value="23">Sivagangai</option>
+            <option value="24">Thenaksi</option>
+            <option value="25">Thanjavur</option>
+            <option value="26">Theni</option>
+            <option value="27">Thiruvallur</option>
+            <option value="28">Thiruvanamalai</option>
+            <option value="29">Tirchy</option>
+            <option value="30">Thirunalveli</option>
+            <option value="31">Thirupathur</option>
+            <option value="32">Tirupur</option>
+            <option value="33">Thiruvarur</option>
+            <option value="34">Thoothukudi</option>
+            <option value="35">Vellore</option>
+            <option value="36">Viruthunagar</option>                        
+          </select> 
+          <br><br>
+          <h2>Are You Working in the police Department ?</h2>
+          <select id="emp"> 
+            <option value="1">Yes</option> 
+            <option value="0">No</option> 
+          </select>
+          <br><br>
+          <h2>Count Of Family Members</h2>
+          <input type="number" id="no_of_members">
+          <br><br>
+
+          <h2>select your income range</h2>
+          <select id="income"> 
+            <option value="0">BPL</option> 
+            <option value="1">1L - 4L</option>
+            <option value="2">4L - 8L</option>
+            <option value="3">8L - 12L</option>
+            <option value="4">Above 12L</option> 
+          </select>
+          <br><br>
+          <button id="submit-button" type="submit" pys-onClick="my_function"><h2>Submit Form</h2></button>
+          <br><br>
+          <div id="data-output" style="font-size: larger;"></div>
+          <div id="test-output" style="font-size: larger;"></div>
+
+
+          <py-script>
+            import pandas as pd
+            import numpy as np
+            from sklearn.neighbors import KNeighborsClassifier
+            from pyodide.http import open_url
+            from csv import writer
+            file=open_url("data:text/txt;base64,77u/SUQsRGlzdHJpY3QsRW1wbG95bWVudCxOdW1iZXIgT2YgRmFtaWx5IE1lbWJlcnMsSW5jb21lLENhcmQgVHlwZQ0KMSxBcml5YWx1ciwwLDIsMSxTdWdhciBDYXJkDQoxLEFyaXlhbHVyLDAsMiwyLEFBWSBDYXJkDQoxLEFyaXlhbHVyLDAsMywwLFJpY2UgQ2FyZA0KMSxBcml5YWx1ciwwLDMsMSxSaWNlIENhcmQNCjEsQXJpeWFsdXIsMCwzLDIsQUFZIENhcmQNCjEsQXJpeWFsdXIsMCw0LDAsTm9uLUNvbW1vZGl0eSBDYXJkDQoxLEFyaXlhbHVyLDAsNSw0LFN1Z2FyIENhcmQNCjEsQXJpeWFsdXIsMSwzLDIsUG9saWNlIENhcmQNCjEsQXJpeWFsdXIsMSw0LDMsUG9saWNlIENhcmQNCjIsQ2hlbm5haSBOb3J0aCwwLDEsMyxSaWNlIENhcmQNCjIsQ2hlbm5haSBOb3J0aCwwLDIsMCxTdWdhciBDYXJkDQoyLENoZW5uYWkgTm9ydGgsMCwyLDMsU3VnYXIgQ2FyZA0KMixDaGVubmFpIE5vcnRoLDAsMiw0LFJpY2UgQ2FyZA0KMixDaGVubmFpIE5vcnRoLDAsNCw0LFJpY2UgQ2FyZA0KMixDaGVubmFpIE5vcnRoLDEsMiwzLFBvbGljZSBDYXJkDQoyLENoZW5uYWkgTm9ydGgsMSwzLDIsUG9saWNlIENhcmQNCjIsQ2hlbm5haSBOb3J0aCwxLDUsMSxQb2xpY2UgQ2FyZA0KMyxDaGVubmFpIFNvdXRoLDAsMiwyLEFBWSBDYXJkDQozLENoZW5uYWkgU291dGgsMCwzLDEsUmljZSBDYXJkDQozLENoZW5uYWkgU291dGgsMCwzLDIsQUFZIENhcmQNCjMsQ2hlbm5haSBTb3V0aCwwLDUsMyxSaWNlIENhcmQNCjMsQ2hlbm5haSBTb3V0aCwxLDMsMyxQb2xpY2UgQ2FyZA0KMyxDaGVubmFpIFNvdXRoLDEsMyw0LFBvbGljZSBDYXJkDQozLENoZW5uYWkgU291dGgsMSw1LDEsUG9saWNlIENhcmQNCjQsQ29pbWJhdG9yZSwwLDIsNCxSaWNlIENhcmQNCjQsQ29pbWJhdG9yZSwwLDMsMCxTdWdhciBDYXJkDQo0LENvaW1iYXRvcmUsMCwzLDIsQUFZIENhcmQNCjQsQ29pbWJhdG9yZSwwLDQsMSxTdWdhciBDYXJkDQo0LENvaW1iYXRvcmUsMCw0LDMsU3VnYXIgQ2FyZA0KNCxDb2ltYmF0b3JlLDAsNSwxLFN1Z2FyIENhcmQNCjQsQ29pbWJhdG9yZSwwLDUsMixSaWNlIENhcmQNCjQsQ29pbWJhdG9yZSwxLDMsNCxQb2xpY2UgQ2FyZA0KNSxDdWRkYWxvcmUsMCwyLDQsUmljZSBDYXJkDQo1LEN1ZGRhbG9yZSwwLDMsMyxSaWNlIENhcmQNCjUsQ3VkZGFsb3JlLDAsNCwxLFJpY2UgQ2FyZA0KNSxDdWRkYWxvcmUsMCw0LDIsQUFZIENhcmQNCjUsQ3VkZGFsb3JlLDAsNCwzLFJpY2UgQ2FyZA0KNSxDdWRkYWxvcmUsMCw1LDMsUmljZSBDYXJkDQo1LEN1ZGRhbG9yZSwxLDUsMCxQb2xpY2UgQ2FyZA0KNSxDdWRkYWxvcmUsMSw1LDIsUG9saWNlIENhcmQNCjYsRGhhcm1hcHVyaSwwLDIsMixBQVkgQ2FyZA0KNixEaGFybWFwdXJpLDAsMiwzLFN1Z2FyIENhcmQNCjYsRGhhcm1hcHVyaSwwLDIsNCxOb24tQ29tbW9kaXR5IENhcmQNCjYsRGhhcm1hcHVyaSwwLDMsMyxOb24tQ29tbW9kaXR5IENhcmQNCjYsRGhhcm1hcHVyaSwwLDQsMixBQVkgQ2FyZA0KNixEaGFybWFwdXJpLDAsNSwxLFN1Z2FyIENhcmQNCjYsRGhhcm1hcHVyaSwwLDUsMixOb24tQ29tbW9kaXR5IENhcmQNCjYsRGhhcm1hcHVyaSwxLDUsMSxQb2xpY2UgQ2FyZA0KNixEaGFybWFwdXJpLDEsNSwyLFBvbGljZSBDYXJkDQo3LERpbmRpZ3VsLDAsMywxLFN1Z2FyIENhcmQNCjcsRGluZGlndWwsMCwzLDIsUmljZSBDYXJkDQo3LERpbmRpZ3VsLDAsMywzLE5vbi1Db21tb2RpdHkgQ2FyZA0KNyxEaW5kaWd1bCwwLDQsMSxOb24tQ29tbW9kaXR5IENhcmQNCjcsRGluZGlndWwsMCw0LDQsTm9uLUNvbW1vZGl0eSBDYXJkDQo3LERpbmRpZ3VsLDEsMiw0LFBvbGljZSBDYXJkDQo3LERpbmRpZ3VsLDEsMywzLFBvbGljZSBDYXJkDQo3LERpbmRpZ3VsLDEsNCwyLFBvbGljZSBDYXJkDQo4LEVyb2RlLDAsMiwzLFJpY2UgQ2FyZA0KOCxFcm9kZSwwLDMsMixBQVkgQ2FyZA0KOCxFcm9kZSwwLDMsMyxTdWdhciBDYXJkDQo4LEVyb2RlLDAsMyw0LFN1Z2FyIENhcmQNCjgsRXJvZGUsMCw0LDAsUmljZSBDYXJkDQo4LEVyb2RlLDAsNSwyLEFBWSBDYXJkDQo4LEVyb2RlLDEsNCwwLFBvbGljZSBDYXJkDQo4LEVyb2RlLDEsNCwyLFBvbGljZSBDYXJkDQo4LEVyb2RlLDEsNCwzLFBvbGljZSBDYXJkDQo5LEthbmNoaXB1cmFtLDAsMiwwLFJpY2UgQ2FyZA0KOSxLYW5jaGlwdXJhbSwwLDIsMixBQVkgQ2FyZA0KOSxLYW5jaGlwdXJhbSwwLDMsMyxTdWdhciBDYXJkDQo5LEthbmNoaXB1cmFtLDAsMyw0LFJpY2UgQ2FyZA0KOSxLYW5jaGlwdXJhbSwwLDQsNCxTdWdhciBDYXJkDQo5LEthbmNoaXB1cmFtLDAsNSwyLEFBWSBDYXJkDQo5LEthbmNoaXB1cmFtLDAsNSwzLFJpY2UgQ2FyZA0KOSxLYW5jaGlwdXJhbSwxLDQsMyxQb2xpY2UgQ2FyZA0KOSxLYW5jaGlwdXJhbSwxLDQsNCxQb2xpY2UgQ2FyZA0KMTAsS2FueWFrdW1hcmksMCwyLDIsQUFZIENhcmQNCjEwLEthbnlha3VtYXJpLDAsNCwwLFJpY2UgQ2FyZA0KMTAsS2FueWFrdW1hcmksMCw1LDAsU3VnYXIgQ2FyZA0KMTAsS2FueWFrdW1hcmksMCw1LDEsU3VnYXIgQ2FyZA0KMTAsS2FueWFrdW1hcmksMCw1LDMsU3VnYXIgQ2FyZA0KMTAsS2FueWFrdW1hcmksMSwzLDIsUG9saWNlIENhcmQNCjEwLEthbnlha3VtYXJpLDEsMywzLFBvbGljZSBDYXJkDQoxMCxLYW55YWt1bWFyaSwxLDMsNCxQb2xpY2UgQ2FyZA0KMTAsS2FueWFrdW1hcmksMSw0LDMsUG9saWNlIENhcmQNCjExLEthcnVyLDAsMiwzLFN1Z2FyIENhcmQNCjExLEthcnVyLDAsMywxLFN1Z2FyIENhcmQNCjExLEthcnVyLDAsMywzLFJpY2UgQ2FyZA0KMTEsS2FydXIsMCw0LDIsUmljZSBDYXJkDQoxMSxLYXJ1ciwwLDQsMyxOb24tQ29tbW9kaXR5IENhcmQNCjExLEthcnVyLDAsNCw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMTEsS2FydXIsMSwyLDIsUG9saWNlIENhcmQNCjExLEthcnVyLDEsMyw0LFBvbGljZSBDYXJkDQoxMixLcmlzaG5hZ2lyaSwwLDIsMixBQVkgQ2FyZA0KMTIsS3Jpc2huYWdpcmksMCwzLDEsU3VnYXIgQ2FyZA0KMTIsS3Jpc2huYWdpcmksMCw0LDIsQUFZIENhcmQNCjEyLEtyaXNobmFnaXJpLDAsNCwzLFJpY2UgQ2FyZA0KMTIsS3Jpc2huYWdpcmksMCw1LDIsQUFZIENhcmQNCjEyLEtyaXNobmFnaXJpLDEsMiwzLFBvbGljZSBDYXJkDQoxMixLcmlzaG5hZ2lyaSwxLDMsMixQb2xpY2UgQ2FyZA0KMTIsS3Jpc2huYWdpcmksMSw0LDMsUG9saWNlIENhcmQNCjEzLE1hZHVyYWksMCwyLDIsQUFZIENhcmQNCjEzLE1hZHVyYWksMCwzLDEsUmljZSBDYXJkDQoxMyxNYWR1cmFpLDAsMywyLEFBWSBDYXJkDQoxMyxNYWR1cmFpLDAsMyw0LFN1Z2FyIENhcmQNCjEzLE1hZHVyYWksMCw0LDMsU3VnYXIgQ2FyZA0KMTMsTWFkdXJhaSwwLDUsMCxOb24tQ29tbW9kaXR5IENhcmQNCjEzLE1hZHVyYWksMCw1LDIsQUFZIENhcmQNCjEzLE1hZHVyYWksMSwzLDMsUG9saWNlIENhcmQNCjEzLE1hZHVyYWksMSw0LDEsUG9saWNlIENhcmQNCjE0LE1heWlsYWR1dGh1cmFpLDAsMywyLEFBWSBDYXJkDQoxNCxNYXlpbGFkdXRodXJhaSwwLDUsMCxTdWdhciBDYXJkDQoxNCxNYXlpbGFkdXRodXJhaSwwLDUsMixBQVkgQ2FyZA0KMTQsTWF5aWxhZHV0aHVyYWksMCw1LDMsUmljZSBDYXJkDQoxNCxNYXlpbGFkdXRodXJhaSwxLDIsMSxQb2xpY2UgQ2FyZA0KMTQsTWF5aWxhZHV0aHVyYWksMSw0LDMsUG9saWNlIENhcmQNCjE0LE1heWlsYWR1dGh1cmFpLDEsNSwxLFBvbGljZSBDYXJkDQoxNSxOYWdhcGF0dGluYW0sMCwyLDIsQUFZIENhcmQNCjE1LE5hZ2FwYXR0aW5hbSwwLDIsMyxOb24tQ29tbW9kaXR5IENhcmQNCjE1LE5hZ2FwYXR0aW5hbSwwLDMsMixBQVkgQ2FyZA0KMTUsTmFnYXBhdHRpbmFtLDAsNCwxLE5vbi1Db21tb2RpdHkgQ2FyZA0KMTUsTmFnYXBhdHRpbmFtLDAsNSwyLEFBWSBDYXJkDQoxNSxOYWdhcGF0dGluYW0sMSwyLDMsUG9saWNlIENhcmQNCjE1LE5hZ2FwYXR0aW5hbSwxLDIsNCxQb2xpY2UgQ2FyZA0KMTUsTmFnYXBhdHRpbmFtLDEsNCwwLFBvbGljZSBDYXJkDQoxNixOYW1tYWthbCwwLDIsMSxSaWNlIENhcmQNCjE2LE5hbW1ha2FsLDAsMiwzLFJpY2UgQ2FyZA0KMTYsTmFtbWFrYWwsMCwyLDQsU3VnYXIgQ2FyZA0KMTYsTmFtbWFrYWwsMCwzLDEsU3VnYXIgQ2FyZA0KMTYsTmFtbWFrYWwsMCwzLDIsQUFZIENhcmQNCjE2LE5hbW1ha2FsLDAsMyw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMTYsTmFtbWFrYWwsMCw0LDIsQUFZIENhcmQNCjE2LE5hbW1ha2FsLDAsNCw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMTYsTmFtbWFrYWwsMCw1LDEsTm9uLUNvbW1vZGl0eSBDYXJkDQoxNixOYW1tYWthbCwwLDUsMixBQVkgQ2FyZA0KMTYsTmFtbWFrYWwsMSwyLDIsUG9saWNlIENhcmQNCjE2LE5hbW1ha2FsLDEsMywwLFBvbGljZSBDYXJkDQoxNixOYW1tYWthbCwxLDMsMyxQb2xpY2UgQ2FyZA0KMTcsTmlsZ3JpcywwLDIsMCxTdWdhciBDYXJkDQoxNyxOaWxncmlzLDAsMywwLFN1Z2FyIENhcmQNCjE3LE5pbGdyaXMsMCwzLDMsQUFZIENhcmQNCjE3LE5pbGdyaXMsMCwzLDQsTm9uLUNvbW1vZGl0eSBDYXJkDQoxNyxOaWxncmlzLDAsNCwxLFJpY2UgQ2FyZA0KMTcsTmlsZ3JpcywwLDQsMyxOb24tQ29tbW9kaXR5IENhcmQNCjE3LE5pbGdyaXMsMCw1LDIsQUFZIENhcmQNCjE3LE5pbGdyaXMsMSwyLDAsUG9saWNlIENhcmQNCjE4LFBlcmFtYmFsdXIsMCwxLDAsTm9uLUNvbW1vZGl0eSBDYXJkDQoxOCxQZXJhbWJhbHVyLDAsMiwxLE5vbi1Db21tb2RpdHkgQ2FyZA0KMTgsUGVyYW1iYWx1ciwwLDIsMyxTdWdhciBDYXJkDQoxOCxQZXJhbWJhbHVyLDAsMiw0LFJpY2UgQ2FyZA0KMTgsUGVyYW1iYWx1ciwwLDQsMCxSaWNlIENhcmQNCjE4LFBlcmFtYmFsdXIsMCw0LDIsQUFZIENhcmQNCjE4LFBlcmFtYmFsdXIsMCw1LDIsQUFZIENhcmQNCjE4LFBlcmFtYmFsdXIsMSwzLDIsUG9saWNlIENhcmQNCjE4LFBlcmFtYmFsdXIsMSw0LDQsUG9saWNlIENhcmQNCjE5LFB1ZHVrb3R0YWksMCwyLDEsTm9uLUNvbW1vZGl0eSBDYXJkDQoxOSxQdWR1a290dGFpLDAsMiw0LFN1Z2FyIENhcmQNCjE5LFB1ZHVrb3R0YWksMCwzLDAsU3VnYXIgQ2FyZA0KMTksUHVkdWtvdHRhaSwwLDUsMSxSaWNlIENhcmQNCjE5LFB1ZHVrb3R0YWksMCw1LDIsQUFZIENhcmQNCjE5LFB1ZHVrb3R0YWksMCw1LDMsU3VnYXIgQ2FyZA0KMTksUHVkdWtvdHRhaSwwLDUsNCxTdWdhciBDYXJkDQoxOSxQdWR1a290dGFpLDEsNCwwLFBvbGljZSBDYXJkDQoxOSxQdWR1a290dGFpLDEsNSwyLFBvbGljZSBDYXJkDQoyMCxSYW1hbmF0aGFwdXJhbSwwLDIsMSxTdWdhciBDYXJkDQoyMCxSYW1hbmF0aGFwdXJhbSwwLDIsMixBQVkgQ2FyZA0KMjAsUmFtYW5hdGhhcHVyYW0sMCwzLDIsQUFZIENhcmQNCjIwLFJhbWFuYXRoYXB1cmFtLDAsMywzLFJpY2UgQ2FyZA0KMjAsUmFtYW5hdGhhcHVyYW0sMCw0LDIsQUFZIENhcmQNCjIwLFJhbWFuYXRoYXB1cmFtLDAsNCwzLFN1Z2FyIENhcmQNCjIwLFJhbWFuYXRoYXB1cmFtLDEsMiwyLFBvbGljZSBDYXJkDQoyMCxSYW1hbmF0aGFwdXJhbSwxLDMsMSxQb2xpY2UgQ2FyZA0KMjAsUmFtYW5hdGhhcHVyYW0sMSwzLDMsUG9saWNlIENhcmQNCjIxLFJhbmlwcGV0LDAsMywxLFJpY2UgQ2FyZA0KMjEsUmFuaXBwZXQsMCwzLDIsQUFZIENhcmQNCjIxLFJhbmlwcGV0LDAsMywzLFN1Z2FyIENhcmQNCjIxLFJhbmlwcGV0LDAsMyw0LFJpY2UgQ2FyZA0KMjEsUmFuaXBwZXQsMCw0LDAsU3VnYXIgQ2FyZA0KMjEsUmFuaXBwZXQsMCw0LDIsQUFZIENhcmQNCjIxLFJhbmlwcGV0LDAsNCwzLFN1Z2FyIENhcmQNCjIxLFJhbmlwcGV0LDEsMiwzLFBvbGljZSBDYXJkDQoyMSxSYW5pcHBldCwxLDQsMixQb2xpY2UgQ2FyZA0KMjEsUmFuaXBwZXQsMSw0LDQsUG9saWNlIENhcmQNCjIyLFNhbGVtLDAsMiwwLFJpY2UgQ2FyZA0KMjIsU2FsZW0sMCwyLDMsUmljZSBDYXJkDQoyMixTYWxlbSwwLDMsMSxSaWNlIENhcmQNCjIyLFNhbGVtLDAsNCwzLE5vbi1Db21tb2RpdHkgQ2FyZA0KMjIsU2FsZW0sMCw0LDQsUmljZSBDYXJkDQoyMixTYWxlbSwwLDUsMixBQVkgQ2FyZA0KMjIsU2FsZW0sMCw1LDQsTm9uLUNvbW1vZGl0eSBDYXJkDQoyMixTYWxlbSwxLDMsMSxQb2xpY2UgQ2FyZA0KMjIsU2FsZW0sMSw0LDIsUG9saWNlIENhcmQNCjIyLFNhbGVtLDEsNSwyLFBvbGljZSBDYXJkDQoyMixTYWxlbSwxLDUsMyxQb2xpY2UgQ2FyZA0KMjMsU2l2YWdhbmdhLDAsMywwLFN1Z2FyIENhcmQNCjIzLFNpdmFnYW5nYSwwLDMsMixBQVkgQ2FyZA0KMjMsU2l2YWdhbmdhLDAsNCwzLFN1Z2FyIENhcmQNCjIzLFNpdmFnYW5nYSwwLDQsNCxTdWdhciBDYXJkDQoyMyxTaXZhZ2FuZ2EsMCw1LDQsUmljZSBDYXJkDQoyMyxTaXZhZ2FuZ2EsMSwyLDEsUG9saWNlIENhcmQNCjIzLFNpdmFnYW5nYSwxLDMsMixQb2xpY2UgQ2FyZA0KMjMsU2l2YWdhbmdhLDEsNCwyLFBvbGljZSBDYXJkDQoyNCxUZW5rYXNpLDAsMiw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMjQsVGVua2FzaSwwLDMsMCxSaWNlIENhcmQNCjI0LFRlbmthc2ksMCwzLDEsUmljZSBDYXJkDQoyNCxUZW5rYXNpLDAsNCwyLEFBWSBDYXJkDQoyNCxUZW5rYXNpLDAsNCwzLFN1Z2FyIENhcmQNCjI0LFRlbmthc2ksMCw1LDMsU3VnYXIgQ2FyZA0KMjQsVGVua2FzaSwxLDMsMixQb2xpY2UgQ2FyZA0KMjQsVGVua2FzaSwxLDMsMyxQb2xpY2UgQ2FyZA0KMjQsVGVua2FzaSwxLDQsMixQb2xpY2UgQ2FyZA0KMjUsVGhhbmphdnVyLDAsMiwxLFN1Z2FyIENhcmQNCjI1LFRoYW5qYXZ1ciwwLDIsMixBQVkgQ2FyZA0KMjUsVGhhbmphdnVyLDAsMywyLEFBWSBDYXJkDQoyNSxUaGFuamF2dXIsMCw0LDIsQUFZIENhcmQNCjI1LFRoYW5qYXZ1ciwxLDIsMixQb2xpY2UgQ2FyZA0KMjUsVGhhbmphdnVyLDEsMywyLFBvbGljZSBDYXJkDQoyNSxUaGFuamF2dXIsMSwzLDMsUG9saWNlIENhcmQNCjI1LFRoYW5qYXZ1ciwxLDQsMyxQb2xpY2UgQ2FyZA0KMjYsVGhlbmksMCwyLDIsQUFZIENhcmQNCjI2LFRoZW5pLDAsMywwLFJpY2UgQ2FyZA0KMjYsVGhlbmksMCw0LDIsQUFZIENhcmQNCjI2LFRoZW5pLDAsNCwzLFN1Z2FyIENhcmQNCjI2LFRoZW5pLDAsNCw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMjYsVGhlbmksMCw1LDAsUmljZSBDYXJkDQoyNixUaGVuaSwxLDMsMSxQb2xpY2UgQ2FyZA0KMjYsVGhlbmksMSwzLDIsUG9saWNlIENhcmQNCjI2LFRoZW5pLDEsMywzLFBvbGljZSBDYXJkDQoyNyxUaGlydXZhbGx1ciwwLDIsMCxTdWdhciBDYXJkDQoyNyxUaGlydXZhbGx1ciwwLDIsMyxOb24tQ29tbW9kaXR5IENhcmQNCjI3LFRoaXJ1dmFsbHVyLDAsMywyLEFBWSBDYXJkDQoyNyxUaGlydXZhbGx1ciwwLDMsMyxSaWNlIENhcmQNCjI3LFRoaXJ1dmFsbHVyLDAsMyw0LFN1Z2FyIENhcmQNCjI3LFRoaXJ1dmFsbHVyLDEsMywyLFBvbGljZSBDYXJkDQoyNyxUaGlydXZhbGx1ciwxLDQsMCxQb2xpY2UgQ2FyZA0KMjcsVGhpcnV2YWxsdXIsMSw0LDIsUG9saWNlIENhcmQNCjI3LFRoaXJ1dmFsbHVyLDEsNCwzLFBvbGljZSBDYXJkDQoyNyxUaGlydXZhbGx1ciwxLDUsMixQb2xpY2UgQ2FyZA0KMjgsVGhpcnV2YW5uYW1hbGFpLDAsMiwyLEFBWSBDYXJkDQoyOCxUaGlydXZhbm5hbWFsYWksMCwyLDMsU3VnYXIgQ2FyZA0KMjgsVGhpcnV2YW5uYW1hbGFpLDAsMiw0LFJpY2UgQ2FyZA0KMjgsVGhpcnV2YW5uYW1hbGFpLDAsMywyLEFBWSBDYXJkDQoyOCxUaGlydXZhbm5hbWFsYWksMCwzLDMsU3VnYXIgQ2FyZA0KMjgsVGhpcnV2YW5uYW1hbGFpLDAsNCw0LFJpY2UgQ2FyZA0KMjgsVGhpcnV2YW5uYW1hbGFpLDEsMywyLFBvbGljZSBDYXJkDQoyOCxUaGlydXZhbm5hbWFsYWksMSw1LDMsUG9saWNlIENhcmQNCjI5LFRpcnVjaGlyYXBwYWxsaSwwLDIsMixBQVkgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDAsMiw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDAsMywxLFJpY2UgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDAsMywzLFJpY2UgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDAsMyw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDAsNSw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMjksVGlydWNoaXJhcHBhbGxpLDEsMiwyLFBvbGljZSBDYXJkDQoyOSxUaXJ1Y2hpcmFwcGFsbGksMSwzLDMsUG9saWNlIENhcmQNCjI5LFRpcnVjaGlyYXBwYWxsaSwxLDUsMixQb2xpY2UgQ2FyZA0KMzAsVGlydW5lbHZlbGksMCwzLDMsU3VnYXIgQ2FyZA0KMzAsVGlydW5lbHZlbGksMCw1LDIsQUFZIENhcmQNCjMwLFRpcnVuZWx2ZWxpLDAsNSw0LE5vbi1Db21tb2RpdHkgQ2FyZA0KMzAsVGlydW5lbHZlbGksMSwyLDMsUG9saWNlIENhcmQNCjMwLFRpcnVuZWx2ZWxpLDEsMywwLFBvbGljZSBDYXJkDQozMCxUaXJ1bmVsdmVsaSwxLDMsMSxQb2xpY2UgQ2FyZA0KMzAsVGlydW5lbHZlbGksMSwzLDIsUG9saWNlIENhcmQNCjMwLFRpcnVuZWx2ZWxpLDEsNCwzLFBvbGljZSBDYXJkDQozMCxUaXJ1bmVsdmVsaSwxLDQsNCxQb2xpY2UgQ2FyZA0KMzEsVGlydXBhdHR1ciwwLDIsMixBQVkgQ2FyZA0KMzEsVGlydXBhdHR1ciwwLDMsMSxSaWNlIENhcmQNCjMxLFRpcnVwYXR0dXIsMCwzLDMsUmljZSBDYXJkDQozMSxUaXJ1cGF0dHVyLDAsNCwwLFN1Z2FyIENhcmQNCjMxLFRpcnVwYXR0dXIsMCw1LDIsQUFZIENhcmQNCjMxLFRpcnVwYXR0dXIsMCw1LDMsU3VnYXIgQ2FyZA0KMzEsVGlydXBhdHR1ciwxLDIsMSxQb2xpY2UgQ2FyZA0KMzEsVGlydXBhdHR1ciwxLDQsNCxQb2xpY2UgQ2FyZA0KMzIsVGlydXB1ciwwLDIsMyxTdWdhciBDYXJkDQozMixUaXJ1cHVyLDAsMiw0LFJpY2UgQ2FyZA0KMzIsVGlydXB1ciwwLDMsMCxSaWNlIENhcmQNCjMyLFRpcnVwdXIsMCwzLDEsUmljZSBDYXJkDQozMixUaXJ1cHVyLDAsMyw0LFJpY2UgQ2FyZA0KMzIsVGlydXB1ciwwLDQsMixBQVkgQ2FyZA0KMzIsVGlydXB1ciwwLDUsMCxTdWdhciBDYXJkDQozMixUaXJ1cHVyLDAsNSwyLEFBWSBDYXJkDQozMixUaXJ1cHVyLDAsNSwzLFN1Z2FyIENhcmQNCjMyLFRpcnVwdXIsMSwzLDEsUG9saWNlIENhcmQNCjMyLFRpcnVwdXIsMSw1LDIsUG9saWNlIENhcmQNCjMzLFRpcnV2YXJ1ciwwLDIsMCxTdWdhciBDYXJkDQozMyxUaXJ1dmFydXIsMCwyLDEsU3VnYXIgQ2FyZA0KMzMsVGlydXZhcnVyLDAsMywyLEFBWSBDYXJkDQozMyxUaXJ1dmFydXIsMCwzLDMsU3VnYXIgQ2FyZA0KMzMsVGlydXZhcnVyLDAsNCwyLEFBWSBDYXJkDQozMyxUaXJ1dmFydXIsMSwzLDMsUG9saWNlIENhcmQNCjMzLFRpcnV2YXJ1ciwxLDUsNCxQb2xpY2UgQ2FyZA0KMzQsVHV0aWNvcmluLDAsMiwyLEFBWSBDYXJkDQozNCxUdXRpY29yaW4sMCwzLDIsQUFZIENhcmQNCjM0LFR1dGljb3JpbiwwLDQsMixBQVkgQ2FyZA0KMzQsVHV0aWNvcmluLDAsNCwzLFN1Z2FyIENhcmQNCjM0LFR1dGljb3JpbiwxLDQsMCxQb2xpY2UgQ2FyZA0KMzQsVHV0aWNvcmluLDEsNCwzLFBvbGljZSBDYXJkDQozNCxUdXRpY29yaW4sMSw0LDQsUG9saWNlIENhcmQNCjM1LFZlbGxvcmUsMCwyLDEsUmljZSBDYXJkDQozNSxWZWxsb3JlLDAsMiwzLFJpY2UgQ2FyZA0KMzUsVmVsbG9yZSwwLDQsNCxOb24tQ29tbW9kaXR5IENhcmQNCjM1LFZlbGxvcmUsMSwyLDIsUG9saWNlIENhcmQNCjM1LFZlbGxvcmUsMSwzLDMsUG9saWNlIENhcmQNCjM1LFZlbGxvcmUsMSw1LDEsUG9saWNlIENhcmQNCjM1LFZlbGxvcmUsMSw1LDMsUG9saWNlIENhcmQNCjM2LFZpcnVkaHVuYWdhciwwLDIsMyxTdWdhciBDYXJkDQozNixWaXJ1ZGh1bmFnYXIsMCwzLDIsQUFZIENhcmQNCjM2LFZpcnVkaHVuYWdhciwwLDQsMyxTdWdhciBDYXJkDQozNixWaXJ1ZGh1bmFnYXIsMCw0LDQsTm9uLUNvbW1vZGl0eSBDYXJkDQozNixWaXJ1ZGh1bmFnYXIsMSwzLDAsUG9saWNlIENhcmQNCjM2LFZpcnVkaHVuYWdhciwxLDMsMSxQb2xpY2UgQ2FyZA0K")
+            df=pd.read_csv(file)
+            <!-- print(df) -->
+
+
+            def my_function(*args, **kwargs):
+                District =Element('District').element.value 
+                employement =Element('emp').element.value 
+                members = Element('no_of_members').element.value
+                income = Element('income').element.value
+                
+                <!-- Element('test-output').element.innerText = District+ " " + " " + employement + " " +members +" "+ income; -->
+                my_array(District,employement,members,income)
+
+
+            def my_array(a,b,c,d):
+                data=np.array([[int(a),int(b),int(c),int(d)]])
+                
+                prediction(data)
+
+
+            def prediction(data):
+                Element('data-output').element.innerText = data[0][1]
+                
+                df.set_index("District", inplace = True)
+                Y = df[df['Employment']==data[0][1]]['Card Type'].values
+                X = df[df['Employment']==data[0][1]].drop('Card Type', axis=1).values
+                knn = KNeighborsClassifier(n_neighbors=4)
+                knn.fit(X, Y)
+                Y_pred = knn.predict(X)
+                new_prediction = knn.predict(data) 
+                Element('test-output').element.innerText = "You have been Alloted "+ new_prediction[0]
+                
+                new=data.tolist()
+                
+                new[0].append(new_prediction[0])
+                
+                name=list(set(list(df[df['ID']==new[0][0]].index)))
+                new[0].insert(1,name[0])
+                
+                <!-- Element('data-output').element.innerText = new[0] -->
+                with open("C:/Projects/Ration/Python/Final.csv", 'a') as f_object:
+
+                    writer_object = csv.writer(f_object)
+                
+                    writer_object.write(new[0])
+                
+                    f_object.close()
+                
+                
+            <!-- print("bekdbckjbrkjbfw") 
+            from sklearn.neighbors import KNeighborsClassifier 
+            import pandas as pd
+            import numpy as np
+            from pyodide.http import open_url
+            d=open_url("https://raw.githubusercontent.com/Subramanian30/ration/main/Final.csv?token=GHSAT0AAAAAAB6B2ANJH7TCHXSGTICHYFBWZAGXJMA")
+            df=pd.read_csv(d)
+            df.set_index("District", inplace = True)
+            Y = df['Card Type'].values
+            X = df.drop('Card Type', axis=1).values
+            from sklearn.model_selection import train_test_split
+            from sklearn.preprocessing import StandardScaler
+            df_model = df.copy()
+            scaler = StandardScaler()
+            knn_score=.30
+            features= [['ID','Employment','Number Of Family Members','Income']]
+            for feature in features:
+                df_model[feature] = scaler.fit_transform(df_model[feature])
+            knn = KNeighborsClassifier(n_neighbors=4)
+            knn.fit(X, Y)
+            Y_pred = knn.predict(X)
+            X_new=np.array([[2,1,4,3],[5,0,2,1],[19,0,3,4]])
+            from warnings import filterwarnings
+            warnings.filterwarnings('ignore')
+            new_prediction = knn.predict(X_new)
+            print("Prediction: {}".format(new_prediction))  -->
+            <!--print(df.head())
+            print("gbg") -->
+            </py-script>
+            
+    </body>
+</html>

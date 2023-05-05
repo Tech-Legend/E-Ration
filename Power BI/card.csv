@@ -1,0 +1,13 @@
+﻿Card,Item,Price,Quantity
+AAY Card,Kerosene,14 Rs Per Litre,8 Litres
+AAY Card,Rice,Free,35 kg
+AAY Card,Sugar,13.25 Rs Per kg,2 kg
+AAY Card,Wheat,7.5 Rs Per kg,7 kg
+Rice Card,Kerosene,19 Rs Per Litre,8 Litres
+Rice Card,Rice,Free,5 kg Per Person
+Rice Card,Sugar,25 Rs Per kg,2 kg
+Rice Card,Wheat,15 Rs Per kg,7 kg
+Sugar Card,Kerosene,19 Rs Per Litre,8 Litres
+Sugar Card,Rice,Not Available,Not Available
+Sugar Card,Sugar,25 Rs Per kg,5 kg
+Sugar Card,Wheat,15 Rs Per kg,7 kg

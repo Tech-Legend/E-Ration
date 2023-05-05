@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>E-Ration</title>
+    <link rel="stylesheet" href="assets/css/know.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <iframe title="Know Your Store" style="margin-top: 0%;" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=3e1ef9d4-4df1-43eb-9993-fe47c81c82b2&autoAuth=true&ctid=41409b46-ab33-493c-afa9-b0f31ca64d2d&filterPaneEnabled=false&navContentPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
+    <form action="/rationplace" method="get">
+    <div style="margin-top: 5%; margin-left: 3%; display: flex; gap: 4rem;">
+    
+    <input type="text" name="placename" placeholder="Store name" list="storename">
+    <datalist id="storename">
+      <option value="Anna Nagar-1">
+      <option value="Anna Nagar-2">
+      <option value="Madhavaram-1">
+      <option value="Madhavaram-2">
+      <option value="Manali">
+        <option value="Thangasalai">
+          <option value="NaryanaPillai"></option>
+          <option value="Sengkundram"></option>
+          <option value="Changasavadi"></option>
+          <option value="Thandayarpet"></option>
+          <option value="Gopalapuram"></option>
+          <option value="Manali godown"></option>
+          <option value="Nandanam"></option>
+          <option value="Thiruvanmiyur"></option>
+          <option value="Virugambakkam"></option>
+        
+    </datalist>
+    <div class="area_div" id="area_div">
+      <!-- <input type="text" id="area"  name="cardname" placeholder="Your Card"> -->
+    </div>
+    <div>
+      <input type="submit" value="Submit">
+    </div>
+    </div>
+    </form>
+    <script src="/know.js"></script>
+  </body>
+</html>

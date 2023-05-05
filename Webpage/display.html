@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <style>
+        .containerO{
+            display: flex;
+            gap: 34px;
+justify-content: right;
+        }
+        /* button{
+            color: white;
+            background-color: green;
+            width: 160px;
+            height: 55px;
+           
+            padding: 12px;
+            font-size: 17px;
+            cursor: pointer; 
+            border: none;
+        } */
+    </style>
+</head>
+<body>
+    <h2 style="padding: 35px;font-size: 30px;color: green;">Purchase Details</h2>
+    <br>
+    <table cellpadding="4" style="font-size: 30px; width: 59%;">
+        
+        <tr><td>Name on card</td>
+            <td align="left">{%cardholder%}</td></tr>
+        <tr><td>Card number</td>
+
+            <td align="left">{%cardnumber%}</td></tr>
+        
+<tr><td>Store</td>
+<td align="left">{%cardplace%}</td></tr>
+
+    
+</table>
+<br><br>
+    <table border="1" align="center" cellpadding="4" style="font-size: 30px; width: 99%;">
+        
+            <tr><td>P.U.Rice</td>
+                <td align="right">{%purice%} Kg</td></tr>
+            <tr><td>P.A.Rice</td>
+
+                <td align="right">{%parice%} Kg</td></tr>
+            
+<tr><td>Sugar</td>
+    <td align="right">{%sugaramount%} Kg</td></tr>
+<tr><td>Wheat</td>
+    <td align="right">{%wheatamount%} Kg</td></tr>
+<tr><td>Oil</td>
+    <td align="right">{%oil%} Ltr</td></tr>
+    <!-- <tr><td>Total Price:</td>
+        <td align="right">Rs.{%total%}</td></tr>         -->
+    </table>
+    <br> <br>
+    <div class="containerO">
+        <!-- <div><button style=" color: white;
+            background-color: green;
+            width: 160px;
+            height: 58px;
+           
+            padding: 12px;
+            font-size: 17px;
+            cursor: pointer; 
+            border: none;">Back to Location</button></div> -->
+        <div><form action="/bookslot">
+            <button style=" color: white;
+            background-color: green;
+            width: 160px;
+            height: 57px;
+           
+            padding: 12px;
+            font-size: 15px;
+            cursor: pointer; 
+            border: none;" type="submit">Proceed</button>
+        </form></div>
+    </div>
+
+</body>
+</html>

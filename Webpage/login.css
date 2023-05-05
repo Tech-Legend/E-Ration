@@ -1,0 +1,261 @@
+body, html {
+  height:100%;
+	
+  	overflow-x: hidden;
+	font-family: 'Dosis', sans-serif;
+}
+
+btn {
+	border-radius: 0
+
+  
+}
+.btn:focus, .btn:active, .btn.active, .btn:active:focus {
+	outline: 0;
+  border-radius: 0
+}
+
+
+
+.btn-larger {
+	padding: 15px 40px !important;
+	border:2px solid green !important;;
+	border-radius: 0px !important;;
+	text-transform: uppercase;
+	font-family: 'Dosis', sans-serif;
+	font-size: 18px;
+	font-weight: 300;
+	color: green;
+	background-color: transparent;
+	-webkit-transition: all .6s;
+	-moz-transition: all .6s;
+	transition: all .6s;
+  
+
+}
+.btn-larger:hover, .btn-larger:focus, .btn-larger:active, .btn-larger.active, .open .dropdown-toggle.btn-larger {
+	border-color: 2px Solid green;
+	color: black;
+	background-color: green;
+  border-radius: 0
+}
+.btn-larger:active, .btn-larger.active, .open .dropdown-toggle.btn-larger {
+	background-image: none;
+}
+.btn-larger.disabled, .btn-larger[disabled], fieldset[disabled] .btn-larger, .btn-larger.disabled:hover, .btn-larger[disabled]:hover, fieldset[disabled] .btn-larger:hover, .btn-larger.disabled:focus, .btn-larger[disabled]:focus, fieldset[disabled] .btn-larger:focus, .btn-larger.disabled:active, .btn-larger[disabled]:active, fieldset[disabled] .btn-larger:active, .btn-larger.disabled.active, .btn-larger[disabled].active, fieldset[disabled] .btn-larger.active {
+	border-color: #AEA8D3;
+	background-color: #AEA8D3;
+}
+.btn-larger .badge {
+	color: #AEA8D3;
+	background-color: black;
+}
+
+div#form {
+	color: black;
+	background-attachment: scroll;
+	
+	background-position: center center;
+	background-repeat: none;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+  min-height:100%;
+
+}
+
+#userform p {
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+#userform ul {
+	list-style-type: none;
+	padding: 0;
+	margin-bottom: 0px;
+}
+#userform {
+	
+	margin: 20px 0 20px 0
+}
+ @media (min-width: 768px) {
+#userform {
+	
+	margin: 50px 0 20px 0
+}
+}
+#userform .nav-tabs.nav-justified > li > a {
+	text-transform: uppercase;
+	font-size: 20px;
+	color: black;
+	background-color:white;
+}
+#userform .nav-tabs.nav-justified > .active > a, #userform .nav-tabs.nav-justified > .active > a:hover, #userform .nav-tabs.nav-justified > .active > a:focus {
+	border: 0;
+	background: green;
+	color: white;
+	border-radius: 0;
+}
+#userform .nav-justified > li > a {
+	margin-bottom: 0;
+	-webkit-transition: all .6s;
+	-moz-transition: all .6s;
+	transition: all .6s;
+}
+#userform .nav-justified > li > a:hover {
+	background: #AEA8D3;
+	color: black;
+}
+#userform .nav-tabs > li > a {
+	border: 0px solid transparent;
+	border-radius: 0
+}
+#userform .nav-tabs.nav-justified > li > a:hover {
+	background: green;
+	color: #FFF;
+	border-radius: 0;
+	border: 0;
+	-webkit-transition: all .6s;
+	-moz-transition: all .6s;
+	transition: all .6s;
+}
+#userform .nav-tabs > li.active > a, #userform .nav-tabs > li.active > a:hover, #userform .nav-tabs > li.active > a:focus {
+	color: black;
+	cursor: default;
+	background-color: transparent;
+	border: 0;
+	-webkit-transition: all .6s;
+	-moz-transition: all .6s;
+	transition: all .6s;
+}
+ @media (min-width: 768px) {
+#userform .nav-tabs.nav-justified > li > a {
+	border: 0;
+	-webkit-transition: all .6s;
+	-moz-transition: all .6s;
+	transition: all .6s;
+}
+#userform .nav-tabs.nav-justified > li > a:hover {
+	background-color: green;
+	border-color: transparent;
+	border: 0;
+	-webkit-transition: all .6s;
+	-moz-transition: all .6s;
+	transition: all .6s;
+}
+}
+ @media (max-width: 768px) {
+.nav-justified > li {
+	display: table-cell !important;
+	width: 1% !important;
+}
+}
+#userform .nav-tabs {
+	border-bottom: 0px solid black;
+}
+#userform .tab-pane h2 {
+	margin: 10px 0;
+	color: black;
+}
+#userform .tab-pane p.lead {
+	margin-top: 20px;
+}
+#userform .tab-content {
+	padding: 20px
+}
+#userform .form-group {
+	margin-bottom: 0px;
+	color: black;
+}
+#userform .form-group input, #userform .form-group textarea , #userform .form-group select  {
+	padding: 10px;
+}
+#userform .form-group input.form-control ,#userform .form-group select.form-control {
+	height: auto;
+	
+	color: black;
+}
+#userform .form-control {
+	border-radius: 0;
+	border: 2px solid green;
+}
+#userform .form-control:focus {
+	border-color: green;
+	box-shadow: none;
+}
+ #userform::-webkit-input-placeholder {
+ text-transform: uppercase;
+font-family: 'Dosis', sans-serif;
+font-weight: 700;
+ color: #bbb;
+}
+#userform #signup .form-group label {
+	position: relative;
+	-webkit-transform: translateY(35px);
+	-ms-transform: translateY(35px);
+	transform: translateY(35px);
+	left: 10px;
+	top: 0px;
+	
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+	-webkit-backface-visibility: hidden;
+	pointer-events: none;
+	font-size: 12px;
+	font-weight: 300
+}
+#userform #signup .form-group label .req {
+	margin: 2px;
+	color: green;
+}
+#userform #signup .form-group label.active {
+	-webkit-transform: translateY(0px);
+	-ms-transform: translateY(0px);
+	transform: translateY(0px);
+	left: 2px;
+	font-size: 12px;
+}
+#userform #signup .form-group label.active .req {
+	opacity: 0;
+}
+#userform label.highlight {
+	color: black;
+}
+#userform #login .form-group label {
+	position: relative;
+	-webkit-transform: translateY(35px);
+	-ms-transform: translateY(35px);
+	transform: translateY(35px);
+	left: 10px;
+	top: 0px;
+	
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+	-webkit-backface-visibility: hidden;
+	pointer-events: none;
+	font-size: 12px;
+	font-weight: 300
+}
+#userform #login .form-group label .req {
+	margin: 2px;
+	color: green;
+}
+#userform #login .form-group label.active {
+	-webkit-transform: translateY(0px);
+	-ms-transform: translateY(0px);
+	transform: translateY(0px);
+	left: 2px;
+	font-size: 12px;
+}
+#userform #login .form-group label.active .req {
+	opacity: 0;
+}
+
+.mrgn-30-top {
+	margin-top: 30px
+}
+
+label{
+	font-size: 80px;
+}
+
